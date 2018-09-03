@@ -8,4 +8,8 @@ RUN docker-php-ext-install opcache
 RUN docker-php-ext-install zip
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php
+RUN mv composer.phar /usr/local/bin/composer
+RUN php -r "unlink('composer-setup.php');"
 RUN mkdir /app
